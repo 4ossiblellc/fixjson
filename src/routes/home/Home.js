@@ -20,22 +20,22 @@ class Home extends React.Component {
     })).isRequired,
   };
 
+  addDoubleQuotes(txt) {
+    sonString = txt.replaceAll("([\\w]+)[ ]*=", "\"$1\" ="); // to quote before = value
+    jsonString = txt.replaceAll("=[ ]*([\\w@\\.]+)", "= \"$1\""); // to quote after = value, add special character as needed to the exclusion list in regex
+    jsonString = txt.replaceAll("=[ ]*\"([\\d]+)\"", "= $1"); // to un-quote decimal value
+    jsonString = txt.replaceAll("\"true\"", "true"); // to un-quote boolean
+    jsonString = txt.replaceAll("\"false\"", "false"); // to un-quote boolean
+  }
+
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1 className={s.title}>React.js News</h1>
-          <ul className={s.news}>
-            {this.props.news.map((item, index) => (
-              <li key={index} className={s.newsItem}>
-                <a href={item.link} className={s.newsTitle}>{item.title}</a>
-                <span
-                  className={s.newsDesc}
-                  dangerouslySetInnerHTML={{ __html: item.contentSnippet }}
-                />
-              </li>
-            ))}
-          </ul>
+          <h1 className={s.title}>Place your json object here:</h1>
+          <textarea rows="20" cols="120">
+ 
+          </textarea>
         </div>
       </div>
     );

@@ -21,7 +21,7 @@ class Contact extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>{this.props.title}</h1>
-          <p>...</p>
+          <p><a href="mailto:4ossible+fixjson@gmail.com?Subject=Fixjson%20feedback" target="_top">Send Mail</a></p>
         </div>
       </div>
     );
