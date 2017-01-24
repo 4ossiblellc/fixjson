@@ -30,7 +30,7 @@ class Html extends React.Component {
           <meta name="description" content={description} />
           <meta name="google-site-verification" content="PMf4KljGYydEedDYg9leicBHpz-UIPzZ9XM1QnFqess" />
           <meta name="keywords" content="fix, json, auto, format, fixjson, jsonlint, missing, quotes, invalid" />
-          <meta name="robots" content="index, follow">
+          <meta name="robots" content="index, follow" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="apple-touch-icon" sizes="57x57" href="https://s3.amazonaws.com/fixjson-web-prod/icon/apple-icon-57x57.png" />
           <link rel="apple-touch-icon" sizes="60x60" href="https://s3.amazonaws.com/fixjson-web-prod/icon/apple-icon-60x60.png" />
