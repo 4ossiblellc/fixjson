@@ -10,8 +10,18 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
+var jsonic = require('jsonic');
 
 class Home extends React.Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      value: 'Put your json object here.'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.postInput = this.postInput.bind(this);
+  }
   static propTypes = {
     news: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -20,22 +30,33 @@ class Home extends React.Component {
     })).isRequired,
   };
 
-  addDoubleQuotes(txt) {
-    sonString = txt.replaceAll("([\\w]+)[ ]*=", "\"$1\" ="); // to quote before = value
-    jsonString = txt.replaceAll("=[ ]*([\\w@\\.]+)", "= \"$1\""); // to quote after = value, add special character as needed to the exclusion list in regex
-    jsonString = txt.replaceAll("=[ ]*\"([\\d]+)\"", "= $1"); // to un-quote decimal value
-    jsonString = txt.replaceAll("\"true\"", "true"); // to un-quote boolean
-    jsonString = txt.replaceAll("\"false\"", "false"); // to un-quote boolean
+ handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
+  postInput(){
+    var parsed;
+    try{
+        parsed = jsonic(this.state.value);
+        this.setState({error: null});
+        this.setState({value: JSON.stringify(parsed)});
+    } catch (e){
+        this.setState({error: e.name + " : " + e.message});
+    }
+  }
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.title}>Place your json object here:</h1>
-          <textarea rows="20" cols="120">
- 
+             <div>{(function(error) {
+                      if (error) {
+                        return (<div>{error}</div>);
+                      }
+                    })(this.state.error)}</div>
+          <textarea rows="20" cols="120" value={this.state.value} onChange={this.handleChange}>
           </textarea>
+          <button onClick={this.postInput}>Submit</button>
         </div>
       </div>
     );
