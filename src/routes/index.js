@@ -27,13 +27,15 @@ export default {
     require('./notFound').default,
   ],
 
-  async action({ next }) {
+  async action({
+    next
+  }) {
     // Execute each child route until one of them return the result
     const route = await next();
 
     // Provide default values for title, description etc.
     route.title = `${route.title || 'Untitled Page'} - Auto fix invalid json`;
-    route.description = route.description || '';
+    route.description = route.description || 'Auto fix invalid json';
 
     return route;
   },
