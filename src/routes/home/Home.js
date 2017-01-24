@@ -16,7 +16,7 @@ class Home extends React.Component {
  constructor(props) {
     super(props);
     this.state = {
-      value: 'Put your json object here.'
+      value: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,8 +37,8 @@ class Home extends React.Component {
   postInput(){
     var parsed;
     try{
-        parsed = jsonic(this.state.value);
-        this.setState({error: null});
+        parsed = jsonic(JSON.parse(this.state.value));
+        this.setState({error: "Finished parsing."});
         this.setState({value: JSON.stringify(parsed)});
     } catch (e){
         this.setState({error: e.name + " : " + e.message});
@@ -54,7 +54,7 @@ class Home extends React.Component {
                         return (<div>{error}</div>);
                       }
                     })(this.state.error)}</div>
-          <textarea rows="20" cols="120" value={this.state.value} onChange={this.handleChange}>
+          <textarea rows="20" placeholder="Put your JSON object here." cols="120" value={this.state.value} onChange={this.handleChange}>
           </textarea>
           <button onClick={this.postInput}>Submit</button>
         </div>
