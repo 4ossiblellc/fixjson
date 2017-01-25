@@ -49,9 +49,14 @@ class Home extends React.Component {
     return parsed;
   }
 
-  sendGAEvent() {
-    const visitor = ua(analytics.google.trackingId);
-    visitor.event('Home', 'Submit', 'Cannot Process', JSON.stringify(this.state.value)).send();
+  sendGAEvent(callback) {
+    let visitor = ua(analytics.google.trackingId);
+    visitor.event({
+      ec: "Home",
+      ea: "Submit",
+      el: "Cannot Process",
+      ev: JSON.stringify(this.state.value),
+    }, callback);
   }
 
   postInput() {
@@ -67,13 +72,16 @@ class Home extends React.Component {
           value: parsed
         });
     } catch (e){
-        this.sendGAEvent();
         this.setState({
           error: {
             type:'error',
             message:e.name + " : " + e.message}
           }
         );
+        this.sendGAEvent(function(err){
+          if (err)
+            console.error(err);
+        });
     }
 
   }
@@ -81,7 +89,16 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
+          <h2 className={s.title}>Current support:</h2>
+          <div>
+             <ul>
+             <li>add missing double quote(s)</li>
+             <li>reformat json</li>
+             <li>trailing commas</li>
+             </ul>
+          </div>
           <h2 className={s.title}>Place your json object here:</h2>
+
              <div>{(function(error) {
                       if (error) {
                         return (<div className={error.type === 'error'?s.error:s.success}>{error.message}</div>);
