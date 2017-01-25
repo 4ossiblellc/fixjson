@@ -37,7 +37,7 @@ class Home extends React.Component {
   postInput(){
     var parsed;
     try{
-        parsed = jsonic(JSON.parse(this.state.value));
+        parsed = jsonic(this.state.value);
         this.setState({error: "Finished parsing."});
         this.setState({value: JSON.stringify(parsed)});
     } catch (e){
