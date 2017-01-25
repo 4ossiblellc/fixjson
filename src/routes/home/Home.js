@@ -109,7 +109,7 @@ class Home extends React.Component {
                     })(this.state.error)}</div>
           <textarea rows="20" placeholder="Put your JSON object here." cols="120" value={this.state.value} onChange={this.handleChange}>
           </textarea>
-          <button onClick={this.postInput}>Submit</button>
+          <div><button onClick={this.postInput}>Submit</button></div>
         </div>
       </div>
     );
