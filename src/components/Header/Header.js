@@ -23,7 +23,7 @@ class Header extends React.Component {
             <span className={s.brandTxt}>Fixjson</span>
           </Link>
           <div className={s.banner}>
-            <p className={s.bannerDesc}>Auto fix invalid JSON object</p>
+            <p className={s.bannerDesc}>Validate, format, auto correct and fix JSON object</p>
           </div>
         </div>
       </div>
