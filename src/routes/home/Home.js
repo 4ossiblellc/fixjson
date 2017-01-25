@@ -10,7 +10,9 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
-var jsonic = require('jsonic');
+import jsonic from 'jsonic';
+import jsonFormat from 'json-format';
+
 
 class Home extends React.Component {
  constructor(props) {
@@ -30,25 +32,39 @@ class Home extends React.Component {
     })).isRequired,
   };
 
- handleChange(event) {
+  handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  postInput(){
-    var parsed;
+  processJson(obj) {
+    let parsed;
+    // fix the json as possible
+    parsed = jsonic(obj);
+
+    // format json
+    parsed = jsonFormat(parsed, {
+      type: 'tab'
+    });
+    return parsed;
+  }
+
+  postInput() {
+    let parsed;
+
     try{
-        parsed = jsonic(this.state.value);
+        parsed = this.processJson(this.state.value);
         this.setState({error: "Finished parsing."});
-        this.setState({value: JSON.stringify(parsed)});
+        this.setState({value: parsed});
     } catch (e){
         this.setState({error: e.name + " : " + e.message});
     }
+
   }
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1 className={s.title}>Place your json object here:</h1>
+          <h2 className={s.title}>Place your json object here:</h2>
              <div>{(function(error) {
                       if (error) {
                         return (<div>{error}</div>);

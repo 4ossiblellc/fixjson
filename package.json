@@ -21,6 +21,7 @@
     "graphql": "0.8.2",
     "history": "4.4.0",
     "isomorphic-style-loader": "1.1.0",
+    "json-format": "^1.0.0",
     "jsonic": "^0.2.2",
     "jsonwebtoken": "7.1.9",
     "markdown-it": "8.1.0",
