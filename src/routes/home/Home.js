@@ -15,8 +15,6 @@ import jsonFormat from 'json-format';
 import ua from 'universal-analytics';
 import { analytics } from '../../config';
 
-const visitor = ua(analytics.google.trackingId);
-
 class Home extends React.Component {
  constructor(props) {
     super(props);
@@ -52,7 +50,8 @@ class Home extends React.Component {
   }
 
   sendGAEvent() {
-
+    const visitor = ua(analytics.google.trackingId);
+    visitor.event('Home', 'Submit', 'Cannot Process', JSON.stringify(this.state.value)).send();
   }
 
   postInput() {
@@ -60,16 +59,25 @@ class Home extends React.Component {
 
     try{
         parsed = this.processJson(this.state.value);
-        this.setState({error: {type:'success', message:"Finished parsing."}});
-        this.setState({value: parsed});
+        this.setState( {
+          error: {
+            type:'success',
+            message: 'Finished parsing.'
+          },
+          value: parsed
+        });
     } catch (e){
-        visitor.event('Home', 'Submit', 'Cannot Process', JSON.stringify(this.state.value)).send();
-        this.setState({error: {type:'error', message:e.name + " : " + e.message}});
+        this.sendGAEvent();
+        this.setState({
+          error: {
+            type:'error',
+            message:e.name + " : " + e.message}
+          }
+        );
     }
 
   }
   render() {
-    visitor.pageview("/").send();
     return (
       <div className={s.root}>
         <div className={s.container}>
