@@ -12,7 +12,10 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import jsonic from 'jsonic';
 import jsonFormat from 'json-format';
+import ua from 'universal-analytics';
+import { analytics } from '../../config';
 
+const visitor = ua(analytics.google.trackingId);
 
 class Home extends React.Component {
  constructor(props) {
@@ -48,6 +51,10 @@ class Home extends React.Component {
     return parsed;
   }
 
+  sendGAEvent() {
+
+  }
+
   postInput() {
     let parsed;
 
@@ -56,11 +63,13 @@ class Home extends React.Component {
         this.setState({error: "Finished parsing."});
         this.setState({value: parsed});
     } catch (e){
+        visitor.event('Home', 'Submit', 'Cannot Process', JSON.stringify(this.state.value)).send();
         this.setState({error: e.name + " : " + e.message});
     }
 
   }
   render() {
+    visitor.pageview("/").send();
     return (
       <div className={s.root}>
         <div className={s.container}>
