@@ -6,7 +6,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
@@ -14,6 +13,7 @@ import jsonic from 'jsonic';
 import jsonFormat from 'json-format';
 import ua from 'universal-analytics';
 import { analytics } from '../../config';
+
 
 class Home extends React.Component {
  constructor(props) {
@@ -85,6 +85,9 @@ class Home extends React.Component {
     }
 
   }
+
+
+
   render() {
     return (
       <div className={s.root}>
@@ -93,8 +96,8 @@ class Home extends React.Component {
           <div>
              <ul>
              <li>add missing double quote(s)</li>
-             <li>reformat json</li>
-             <li>trailing commas</li>
+             <li>format json with indentations</li>
+             <li>remove trailing commas</li>
              </ul>
           </div>
           <h2 className={s.title}>Place your json object here:</h2>

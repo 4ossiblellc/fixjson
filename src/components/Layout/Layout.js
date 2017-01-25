@@ -13,6 +13,7 @@ import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import GoogleAd from '../GoogleAd';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -24,7 +25,9 @@ class Layout extends React.Component {
       <div>
         <Header />
         {this.props.children}
+        <GoogleAd client="ca-pub-9855341278243209" slot="2329592170" format="auto"/>
         <Feedback />
+
         <Footer />
       </div>
     );
