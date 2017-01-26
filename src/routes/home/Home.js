@@ -37,10 +37,38 @@ class Home extends React.Component {
     this.setState({value: event.target.value});
   }
 
+  addMissingCommas(str) {
+    const regex = /([\"a-zA-Z0-9]+)([: ]+)([\"][\w]+[\"]([\s\n\}\]]{1,}))+(['"\w])/g;
+    let m;
+
+    while ((m = regex.exec(str)) !== null) {
+        // This is necessary to avoid infinite loops with zero-width matches
+        // console.log("m.index = " + m.index);
+        // console.log("regex.lastIndex = " + regex.lastIndex);
+        if (m.index === regex.lastIndex) {
+            regex.lastIndex++;
+        }
+
+        // The result can be accessed through the `m`-variable.
+        m.forEach((match, groupIndex) => {
+        	if (groupIndex === 5) {
+            	str = str.slice(0, regex.lastIndex-1) + "," + str.slice(regex.lastIndex-1);
+            }
+            // console.log(`Found match, group ${groupIndex}: ${match}`);
+        });
+    }
+
+    return str;
+  }
+
   processJson(obj) {
-    let parsed;
+    let parsed = obj;
+
+    // add if any missing commas
+    parsed = this.addMissingCommas(parsed);
+
     // fix the json as possible
-    parsed = jsonic(obj);
+    parsed = jsonic(parsed);
 
     // format json
     parsed = jsonFormat(parsed, {
