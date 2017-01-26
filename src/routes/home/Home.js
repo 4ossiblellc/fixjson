@@ -126,6 +126,7 @@ class Home extends React.Component {
              <li>add missing double quote(s)</li>
              <li>format json with indentations</li>
              <li>remove trailing commas</li>
+             <li>try to add missing comma between properties</li>
              </ul>
           </div>
           <h2 className={s.title}>Place your json object here:</h2>
