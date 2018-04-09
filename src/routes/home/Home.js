@@ -13,7 +13,7 @@ import jsonic from 'jsonic';
 import jsonFormat from 'json-format';
 import ua from 'universal-analytics';
 import { analytics } from '../../config';
-
+import AdSense from 'react-adsense';
 
 class Home extends React.Component {
  constructor(props) {
@@ -120,6 +120,12 @@ class Home extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
+          <AdSense.Google
+            client='ca-pub-9855341278243209'
+            slot='6033640406'
+            format='link'
+          />
+
           <h2 className={s.title}>Current support:</h2>
           <div>
              <ul>
@@ -140,6 +146,7 @@ class Home extends React.Component {
           </textarea>
           <div><button onClick={this.postInput}>Submit</button></div>
         </div>
+
       </div>
     );
   }
