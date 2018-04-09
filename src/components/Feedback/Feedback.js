@@ -10,12 +10,19 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Feedback.css';
+import AdSense from 'react-adsense';
 
 class Feedback extends React.Component {
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
+          <AdSense.Google
+            client='ca-pub-9855341278243209'
+            slot='2630593778'
+            format='auto'
+          />
+
           <a
             className={s.link}
             href="https://gitter.im/fixjson/Lobby?source=orgpage"
