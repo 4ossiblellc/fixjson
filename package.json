@@ -30,6 +30,7 @@
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
     "pretty-error": "2.0.2",
+    "prop-types": "^15.6.1",
     "query-string": "4.2.3",
     "react": "15.4.0",
     "react-adsense": "0.0.5",
