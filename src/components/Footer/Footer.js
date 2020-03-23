@@ -28,7 +28,7 @@ class Footer extends React.Component {
           </p>
 
           <h4>Can I fix or update the source code?</h4>
-          <p>Please feel free to create a <a href='https://github.com/4ossiblellc/fixjson'>https://github.com/4ossiblellc/fixjson<a/>.
+          <p className={s.contentText}>Please feel free to create a <a href='https://github.com/4ossiblellc/fixjson'>here</a>.
           Our admin will deploy the latest version once the pull request is merged.
           </p>
 
