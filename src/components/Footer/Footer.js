@@ -27,6 +27,11 @@ class Footer extends React.Component {
             and Java.
           </p>
 
+          <h4>Can I fix or update the source code?</h4>
+          <p>Please feel free to create a <a href='https://github.com/4ossiblellc/fixjson'>https://github.com/4ossiblellc/fixjson<a/>.
+          Our admin will deploy the latest version once the pull request is merged.
+          </p>
+
           <h4>Why we use JSON?</h4>
           <p className={s.contentText}>Since the JSON format is text only, it can easily be sent to and from a server,
             and used as a data format by any programming language.</p>
