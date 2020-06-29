@@ -45,7 +45,6 @@ class Html extends React.Component {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
           {style && <style id="css" dangerouslySetInnerHTML={{ __html: style }} />}
         </head>
         <body>
@@ -61,6 +60,9 @@ class Html extends React.Component {
           {analytics.google.trackingId &&
             <script src="https://www.google-analytics.com/analytics.js" async defer />
           }
+          <script
+            data-ad-client="ca-pub-9855341278243209" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </body>
       </html>
     );
